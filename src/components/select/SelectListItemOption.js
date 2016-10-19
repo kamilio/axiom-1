@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import SelectListItem from './SelectListItem';
 
 const STICK_TO_TOP = true;
@@ -20,17 +21,17 @@ export default class SelectListItemOption extends Component {
   componentDidUpdate() {
     const { item: { isActive }, scrollToActiveIndex }  = this.props;
 
-
     if (!isActive || !scrollToActiveIndex) return;
 
     const { item } = this.refs;
-    const { offsetTop, clientHeight } = item;
-    const { parentNode: { scrollTop, clientHeight: parentClientHeight } } = item;
+    const itemNode = findDOMNode(item);
+    const { offsetTop, clientHeight } = itemNode;
+    const { parentNode: { scrollTop, clientHeight: parentClientHeight } } = itemNode;
 
     if (offsetTop + clientHeight > scrollTop + parentClientHeight) {
-      item.scrollIntoView(STICK_TO_BOTTOM);
+      itemNode.scrollIntoView(STICK_TO_BOTTOM);
     } else if (offsetTop < scrollTop) {
-      item.scrollIntoView(STICK_TO_TOP);
+      itemNode.scrollIntoView(STICK_TO_TOP);
     }
   }
 

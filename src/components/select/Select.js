@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
+import { v4 } from 'uuid';
 import omit from 'lodash/omit';
 import { enhance, addPropTypes, addClassName } from '../_utils/components';
 import { buildSelectableItems, defaultInputDisplayValue } from './_utils';
+import Floater from '../floater/Floater';
 import Icon from '../icon/Icon';
 import TextInput from '../form/TextInput';
 import SelectList from '../select/SelectList';
-import SelectMask from '../select/SelectMask';
 
 if (__INCLUDE_CSS__) {
   require('./Select.scss');
@@ -47,6 +47,7 @@ export class Select extends Component {
     this.setState({
       activeIndex: -1,
       filterText: '',
+      id: `select-${v4()}`,
       isOpen: false,
       scrollToActiveIndex: false,
     });
@@ -171,6 +172,7 @@ export class Select extends Component {
       this.close();
       break;
     case keyCodes.UP:
+      this.open();
       this.setActiveIndex(activeIndex - 1 < 0 ? (items.length - 1) : (activeIndex - 1));
       break;
     case keyCodes.DOWN:
@@ -190,41 +192,37 @@ export class Select extends Component {
   }
 
   render() {
-    const { isOpen, scrollToActiveIndex } = this.state;
+    const { id, isOpen, scrollToActiveIndex } = this.state;
     const { maxHeight, noItemsText, ...rest } = this.getProps();
     const items = buildSelectableItems(this.getProps(), this.state);
-    const classes = classnames('ax-select', {
-      'ax-select--open': isOpen,
-    });
 
     return (
       <div
-          className={ classes }
-          onBlur={ ::this.close }
+          className="ax-select"
+          id={ id }
           onFocus={ ::this.open }
-          onKeyDown={ ({ which }) => this.handleKeyDown(which, items) }
-          tabIndex="-1">
-
+          onKeyDown={ ({ which }) => this.handleKeyDown(which, items) }>
         <TextInput
             { ...omit(rest, propIgnoreList) }
-            className="ax-select__input"
             onChange={ (event) => this.setState({ filterText: event.target.value }) }
             value={ this.getInputDisplayValue() }>
           <Icon name={ isOpen ? 'chevron-up' : 'chevron-down' } size="small" />
         </TextInput>
 
-        <SelectList
+        <Floater
             isOpen={ isOpen }
-            items={ items }
-            maxHeight={ maxHeight }
-            noItemsText={ noItemsText }
-            onItemClick={ ::this.handleItemClick }
-            onItemHover={ ::this.setActiveIndex }
-            scrollToActiveIndex={ scrollToActiveIndex } />
-
-        <SelectMask
-            isOpen={ isOpen }
-            onClick={ ::this.close } />
+            onClose={ ::this.close }
+            position="bottom"
+            target={ id }
+            withTip={ true }>
+          <SelectList
+              items={ items }
+              maxHeight={ maxHeight }
+              noItemsText={ noItemsText }
+              onItemClick={ ::this.handleItemClick }
+              onItemHover={ ::this.setActiveIndex }
+              scrollToActiveIndex={ scrollToActiveIndex } />
+        </Floater>
       </div>
     );
   }

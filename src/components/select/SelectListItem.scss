@@ -5,8 +5,8 @@
 
 .ax-select__list-item {
   display: block;
-  padding: $form-input-v-padding $form-input-h-padding;
-  border-bottom: $form-input-border-width solid $input-border-color;
+  margin: $component-padding-v-sm 0;
+  padding: $component-padding-v-sm $component-padding-h-sm;
 
   &:last-child {
     border-bottom: 0;
@@ -18,9 +18,11 @@
 }
 
 .ax-select__list-item--active {
-  background-color: get-color($color-grey, 50);
+  background-color: get-color($color-primary, 50);
+  color: get-text-color(get-color($color-primary, 50));
 }
 
 .ax-select__list-item--selected {
-  background-color: get-color($color-primary, 50);
+  background-color: get-color($color-primary, 500);
+  color: get-text-color(get-color($color-primary, 500));
 }

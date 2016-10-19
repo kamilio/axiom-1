@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Button from '../../button/Button';
+import ButtonGroup from '../../button/ButtonGroup';
 import Grid from '../../grid/Grid';
 import GridCell from '../../grid/GridCell';
 import CheckBox from '../../form/CheckBox';
@@ -8,7 +10,6 @@ import Select from '../Select';
 import Heading from '../../typography/Heading';
 import CodeSnippet from 'style-guide/components/CodeSnippet/CodeSnippet';
 import Example from 'style-guide/components/Example/Example';
-import Snippet from 'style-guide/components/Example/Snippet';
 
 export default class SelectConfigurableDemo extends Component {
 
@@ -42,6 +43,13 @@ export default class SelectConfigurableDemo extends Component {
   updateMaxHeight(event) {
     const value = parseInt(event.target.value, 10);
     this.setState({ maxHeight: isNaN(value) ? 200 : value });
+  }
+
+  resetSelection() {
+    const { multiselect } = this.state;
+    this.setState({
+      selection: multiselect ? [] : null,
+    });
   }
 
   render() {
@@ -133,6 +141,13 @@ export default class SelectConfigurableDemo extends Component {
                 label="Max menu height"
                 onChange={ ::this.updateMaxHeight }
                 value={ maxHeight } />
+
+            <ButtonGroup>
+              <Button
+                  color="feedback-danger"
+                  full={ true }
+                  onClick={ ::this.resetSelection }>Clear values</Button>
+            </ButtonGroup>
           </GridCell>
         </Grid>
       </Example>
