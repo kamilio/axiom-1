@@ -20,6 +20,7 @@ module.exports = [{
     require('bw-axiom/components/billboard/example'),
     require('bw-axiom/components/button/example'),
     require('bw-axiom/components/dialog/example'),
+    require('bw-axiom/components/floater/example'),
     require('bw-axiom/components/form/example'),
     require('bw-axiom/components/grid/example'),
     require('bw-axiom/components/icon/example/index.icon'),
@@ -30,6 +31,7 @@ module.exports = [{
     require('bw-axiom/components/select/example'),
     require('bw-axiom/components/table/example'),
     require('bw-axiom/components/tabset/example'),
+    require('bw-axiom/components/tooltip/example'),
     require('bw-axiom/components/typography/example'),
   ],
 }];

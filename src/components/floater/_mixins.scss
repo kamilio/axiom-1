@@ -1,0 +1,197 @@
+@mixin floater-set-tip-color($tip-color) {
+  &::before {
+    border-color: $tip-color;
+  }
+}
+
+@mixin floater-insert-tip($tip-size) {
+  position: relative;
+
+  &::before {
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-width: $tip-size;
+    border-style: solid;
+    content: '';
+  }
+}
+
+@mixin floater-insert-tip-all-sides($tip-size) {
+  @include floater-insert-tip-top-left($tip-size);
+  @include floater-insert-tip-top-center($tip-size);
+  @include floater-insert-tip-top-right($tip-size);
+  @include floater-insert-tip-right-top($tip-size);
+  @include floater-insert-tip-right-middle($tip-size);
+  @include floater-insert-tip-right-bottom($tip-size);
+  @include floater-insert-tip-bottom-left($tip-size);
+  @include floater-insert-tip-bottom-center($tip-size);
+  @include floater-insert-tip-bottom-right($tip-size);
+  @include floater-insert-tip-left-top($tip-size);
+  @include floater-insert-tip-left-middle($tip-size);
+  @include floater-insert-tip-left-bottom($tip-size);
+}
+
+@mixin floater-insert-tip-top-left($tip-size) {
+  @include vertical-top($tip-size);
+  @include vertical-left($tip-size);
+}
+
+@mixin floater-insert-tip-top-center($tip-size) {
+  @include vertical-top($tip-size);
+  @include vertical-center($tip-size);
+}
+
+@mixin floater-insert-tip-top-right($tip-size) {
+  @include vertical-top($tip-size);
+  @include vertical-right($tip-size);
+}
+
+@mixin floater-insert-tip-right-top($tip-size) {
+  @include horizontal-top($tip-size);
+  @include horizontal-right($tip-size);
+}
+
+@mixin floater-insert-tip-right-middle($tip-size) {
+  @include horizontal-middle($tip-size);
+  @include horizontal-right($tip-size);
+}
+
+@mixin floater-insert-tip-right-bottom($tip-size) {
+  @include horizontal-bottom($tip-size);
+  @include horizontal-right($tip-size);
+}
+
+@mixin floater-insert-tip-bottom-left($tip-size) {
+  @include vertical-bottom($tip-size);
+  @include vertical-left($tip-size);
+}
+
+@mixin floater-insert-tip-bottom-center($tip-size) {
+  @include vertical-bottom($tip-size);
+  @include vertical-center($tip-size);
+}
+
+@mixin floater-insert-tip-bottom-right($tip-size) {
+  @include vertical-bottom($tip-size);
+  @include vertical-right($tip-size);
+}
+
+@mixin floater-insert-tip-left-top($tip-size) {
+  @include horizontal-top($tip-size);
+  @include horizontal-left($tip-size);
+}
+
+@mixin floater-insert-tip-left-middle($tip-size) {
+  @include horizontal-middle($tip-size);
+  @include horizontal-left($tip-size);
+}
+
+@mixin floater-insert-tip-left-bottom($tip-size) {
+  @include horizontal-bottom($tip-size);
+  @include horizontal-left($tip-size);
+}
+
+
+@mixin vertical-top($tip-size) {
+  .ax-floater--element.ax-floater--element-attached-bottom.ax-floater--target-attached-top & {
+    margin-bottom: $tip-size;
+
+    &::before {
+      bottom: -($tip-size * 2);
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+    }
+  }
+}
+
+@mixin vertical-bottom($tip-size) {
+  .ax-floater--element.ax-floater--element-attached-top.ax-floater--target-attached-bottom & {
+    margin-top: $tip-size;
+
+    &::before {
+      top: -($tip-size * 2);
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-left-color: transparent;
+    }
+  }
+}
+
+@mixin vertical-left($tip-size) {
+  .ax-floater--element.ax-floater--element-attached-left.ax-floater--target-attached-left & {
+    &::before {
+      left: $tip-size;
+    }
+  }
+}
+
+@mixin vertical-center($tip-size) {
+  .ax-floater--element.ax-floater--element-attached-center.ax-floater--target-attached-center & {
+    &::before {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@mixin vertical-right($tip-size) {
+  .ax-floater--element.ax-floater--element-attached-right.ax-floater--target-attached-right & {
+    &::before {
+      right: $tip-size;
+    }
+  }
+}
+
+@mixin horizontal-left($tip-size) {
+  .ax-floater--element.ax-floater--element-attached-right.ax-floater--target-attached-left & {
+    margin-right: $tip-size;
+
+    &::before {
+      right: -($tip-size * 2);
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+    }
+  }
+}
+
+@mixin horizontal-right($tip-size) {
+  .ax-floater--element.ax-floater--element-attached-left.ax-floater--target-attached-right & {
+    margin-left: $tip-size;
+
+    &::before {
+      left: -($tip-size * 2);
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+    }
+  }
+}
+
+@mixin horizontal-top($tip-size) {
+  .ax-floater--element.ax-floater--element-attached-top.ax-floater--target-attached-top & {
+    &::before {
+      top: $tip-size;
+    }
+  }
+}
+
+@mixin horizontal-middle($tip-size) {
+  .ax-floater--element.ax-floater--element-attached-middle.ax-floater--target-attached-middle & {
+    &::before {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+@mixin horizontal-bottom($tip-size) {
+  .ax-floater--element.ax-floater--element-attached-bottom.ax-floater--target-attached-bottom & {
+    &::before {
+      bottom: $tip-size;
+    }
+  }
+}

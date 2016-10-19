@@ -1,0 +1,6 @@
+@import '../../design-patterns/colors/_vars.js';
+@import '../floater/mixins';
+
+.ax-floater {
+  filter: drop-shadow($drop-shadow-dark);
+}

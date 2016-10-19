@@ -96,9 +96,9 @@ const colorVariations = colors.reduce((acc, { color }) => {
 }, []);
 
 module.exports = Object.assign({}, palette, aliases, {
-  dropShadowLight: '0 0 1px 0 rgba(44, 54, 67, 0.10)',
-  dropShadowBase: '0 0 1px 0 rgba(44, 54, 67, 0.25)',
-  dropShadowDark: '0 0 1px 0 rgba(44, 54, 67, 0.40)',
+  dropShadowLight: '0 0 3px rgba(44, 54, 67, 0.10)',
+  dropShadowBase: '0 0 3px rgba(44, 54, 67, 0.25)',
+  dropShadowDark: '0 0 3px rgba(44, 54, 67, 0.40)',
 
   colorLuminancePoint: 0.50,
   colorBaseVariation: 500,

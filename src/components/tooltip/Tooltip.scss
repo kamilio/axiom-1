@@ -1,0 +1,29 @@
+@import '../../design-patterns/colors/_vars.js';
+@import '../../design-patterns/colors/mixins';
+@import '../../design-patterns/spacing/_vars.js';
+@import '../floater/mixins';
+
+.ax-tooltip {
+  @include floater-insert-tip($spacing-sm);
+  @include floater-insert-tip-all-sides($spacing-sm);
+
+  padding: $component-padding-v-sm $component-padding-h-sm;
+  border-radius: 2px;
+}
+
+@include for-each-color {
+  .ax-tooltip--#{color-prop(name)} {
+    @include floater-set-tip-color(get-color(color-prop(color), 500));
+
+    background-color: get-color(color-prop(color), 500);
+    color: get-text-color(get-color(color-prop(color), 500));
+  }
+}
+
+.ax-tooltip--primary {
+  @include floater-set-tip-color(get-color($color-primary, 500));
+
+  border-color: get-color($color-primary, 600);
+  background-color: get-color($color-primary, 500);
+  color: get-text-color(get-color($color-primary, 500));
+}

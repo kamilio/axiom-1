@@ -12,13 +12,13 @@ export default class DemoBox extends Component {
   };
 
   render() {
-    const { children, attention } = this.props;
+    const { children, attention, ...rest } = this.props;
     const classes = classnames('dm-demo-box', {
       'dm-demo-box--attention': attention,
     });
 
     return (
-      <div className={ classes }>
+      <div { ...rest } className={ classes }>
         <span>{ children }</span>
       </div>
     );
