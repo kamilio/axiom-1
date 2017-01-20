@@ -1,0 +1,11 @@
+@import '../../design-patterns/spacing/mixins';
+@import '../../design-patterns/spacing/vars';
+
+.ax-menu {
+  @include space-block();
+
+  display: flex;
+  padding: 0;
+  white-space: nowrap;
+  overflow: auto;
+}

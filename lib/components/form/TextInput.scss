@@ -1,0 +1,123 @@
+@import '../../design-patterns/animations/mixins';
+@import '../../design-patterns/layout/mixins';
+@import '../../design-patterns/spacing/vars';
+@import '../../design-patterns/spacing/mixins';
+@import '../typography/vars';
+@import './vars';
+
+.ax-input__container {
+  @include transition((border-color));
+
+  display: flex;
+  position: relative;
+  flex: 1 1 auto;
+  align-items: center;
+  border: $input-border-width solid $input-border-color;
+  border-style: solid;
+  border-radius: $input-border-radius;
+  background-color: $input-background-color;
+  font-size: $font-size-small;
+}
+
+.ax-input__container--disabled {
+  background-color: $input-disabled-background-color;
+}
+
+.ax-input__container--focused {
+  border-color: $input-focus-border-color;
+}
+
+.ax-input__container--valid {
+  border-color: $input-valid-border-color;
+}
+
+.ax-input__container--invalid {
+  border-color: $input-invalid-border-color;
+  color: $input-invalid-color;
+
+  .ax-input {
+    &::placeholder {
+      color: $input-invalid-color;
+    }
+  }
+}
+
+// Input
+.ax-input {
+  flex: 1 1 auto;
+  border: 0;
+  background-color: transparent;
+  text-overflow: ellipsis;
+  appearance: none;
+
+  &::placeholder {
+    color: $input-placeholder-color;
+  }
+
+  &:focus {
+    outline: none;
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  // sass-lint:disable no-vendor-prefixes
+  // Hack: around webkits autofill styling
+  @keyframes inputAutofillFix {
+    to {
+      background-color: transparent;
+      color: inherit;
+    }
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    animation-name: inputAutofillFix;
+    animation-fill-mode: forwards;
+  }
+  // sass-lint:enable no-vendor-prefixes
+}
+
+
+// Sizing
+.ax-input__container--small {
+  .ax-input {
+    padding: $input-small-vertical-padding $input-small-horizontal-padding;
+    font-size: $input-small-font-size;
+    line-height: $input-small-line-height;
+  }
+
+  .ax-input__icon {
+    padding: 0 $input-small-horizontal-padding 0 0;
+  }
+}
+
+.ax-input__container--large {
+  .ax-input {
+    padding: $input-large-vertical-padding $input-large-horizontal-padding;
+    font-size: $input-large-font-size;
+    // BUG: Currently Webkit decides this line-height is too small and explicitly
+    // overrides it and sets a minimum.
+    line-height: $input-large-line-height;
+  }
+
+  .ax-input__icon {
+    padding: 0 $input-large-horizontal-padding 0 0;
+  }
+}
+
+
+// Styles
+.ax-input__container--translucent {
+  border-color: transparent;
+  background-color: var(--color-context-background-subtle);
+
+  .ax-input {
+    &::placeholder {
+      color: var(--color-context-text-subtle);
+    }
+  }
+}

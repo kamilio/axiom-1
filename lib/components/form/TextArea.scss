@@ -1,0 +1,43 @@
+@import '../../design-patterns/animations/mixins';
+@import '../../design-patterns/spacing/vars';
+@import '../form/vars';
+
+.ax-textarea {
+  @include transition((border-color));
+
+  padding: $input-small-vertical-padding $input-small-horizontal-padding;
+  border: $input-border-width solid $input-border-color;
+  border-radius: $input-border-radius;
+  background-color: $input-background-color;
+  resize: none;
+
+  &::placeholder {
+    color: $input-placeholder-color;
+  }
+
+  &:focus {
+    border-color: $input-focus-border-color;
+    outline: none;
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  &:disabled {
+    background-color: $input-disabled-background-color;
+  }
+}
+
+.ax-textarea--valid  {
+  border-color: $input-valid-border-color;
+}
+
+.ax-textarea--invalid {
+  border-color: $input-invalid-border-color;
+  color: $input-invalid-color;
+
+  &::placeholder {
+    color: $input-invalid-color;
+  }
+}

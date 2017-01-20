@@ -1,0 +1,29 @@
+@import '../../design-patterns/spacing/vars';
+@import '../../design-patterns/spacing/mixins';
+
+input,
+textarea {
+  width: 100%;
+  min-width: 0;
+  color: inherit;
+  appearance: none;
+
+  &::placeholder {
+    opacity: 1;
+  }
+}
+
+// Input: Group
+.ax-input__group {
+  @include space-block();
+
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+// Input: Label
+.ax-input__label {
+  margin: 0 0 $component-padding-sm;
+}
+

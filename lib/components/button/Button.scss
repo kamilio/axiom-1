@@ -1,0 +1,133 @@
+@import '../../design-patterns/animations/mixins';
+@import '../../design-patterns/colors/vars';
+@import '../../design-patterns/layout/mixins';
+@import '../../design-patterns/spacing/vars';
+@import '../../design-patterns/spacing/mixins';
+@import '../typography/vars';
+@import '../typography/mixins';
+@import './vars';
+
+// Button: Core
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  line-height: $button-line-height;
+  text-transform: inherit;
+  cursor: pointer;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:active {
+    cursor: default;
+  }
+}
+
+.ax-button {
+  @include space-inline();
+  @include transition((background-color, border-color, color));
+
+  display: inline-flex;
+  align-items: center;
+  border-width: $button-border-width;
+  border-style: solid;
+  border-radius: $button-border-radius;
+  border-color: transparent;
+  background-color: transparent;
+  font-weight: $font-weight-bold;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+
+// Button: Full width
+@mixin button-full-width {
+  @include space-block();
+
+  display: block;
+  width: 100%;
+}
+
+.ax-button--full {
+  @include button-full-width;
+}
+
+@include for-each-breakpoint {
+  @include screen-less-than {
+    .ax-button--full--#{breakpoint-prop(id)} {
+      @include button-full-width;
+    }
+  }
+}
+
+
+// Button: Coloured
+.ax-button--primary {
+  border-color: transparent;
+  background-color: $color-ui-primary-1;
+  color: $color-ui-light-1;
+
+  &:hover  { background-color: $color-ui-primary-2; }
+  &:active { background-color: $color-ui-primary-0; }
+
+  &[disabled] {
+    background-color: var(--color-context-background-disabled);
+    color: var(--color-context-text-disabled);
+  }
+}
+
+
+.ax-button--secondary {
+  border-color: var(--color-context-border);
+  color: $color-ui-primary-1;
+
+  &:hover  {
+    border-color: $color-ui-primary-2;
+    color: $color-ui-primary-2;
+  }
+
+  &:active {
+    border-color: transparent;
+    background-color: $color-ui-primary-0;
+    color: $color-ui-light-1;
+  }
+
+  &[disabled] {
+    border-color: var(--color-context-border);
+    color: var(--color-context-text-disabled);
+  }
+}
+
+.ax-button--tertiary {
+  color: $color-ui-primary-1;
+
+  &:hover     { color: $color-ui-primary-2; }
+  &:active    { color: $color-ui-primary-0; }
+  &[disabled] { color: var(--color-context-text-disabled); }
+}
+
+
+
+// Button: sizes
+.ax-button--small {
+  padding: $button-small-vertical-padding $button-small-horizontal-padding;
+  font-size: $button-small-font-size;
+}
+
+.ax-button--medium {
+  padding: $button-medium-vertical-padding $button-medium-horizontal-padding;
+  font-size: $button-medium-font-size;
+}
+
+.ax-button--large {
+  padding: $button-large-vertical-padding $button-large-horizontal-padding;
+  font-size: $button-large-font-size;
+}

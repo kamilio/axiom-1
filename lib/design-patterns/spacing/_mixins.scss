@@ -1,0 +1,18 @@
+@import './vars';
+
+@mixin space-inline($vertical: $component-margin-md, $horizontal: $vertical) {
+  margin: 0 $horizontal $vertical 0;
+
+  &:last-child {
+    margin-right: 0;
+    margin-bottom: $vertical;
+  }
+}
+
+
+@mixin space-block($vertical: $component-margin-md, $horizontal: 0) {
+  margin: $vertical $horizontal;
+
+  &:first-child { margin-top: 0; }
+  &:last-child  { margin-bottom: 0; }
+}

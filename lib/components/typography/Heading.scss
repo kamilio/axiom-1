@@ -1,0 +1,6 @@
+@import '../typography/mixins';
+
+.ax-heading--display  { @include heading('display') }
+.ax-heading--headline { @include heading('headline') }
+.ax-heading--title    { @include heading('title') }
+.ax-heading--large    { @include heading('large') }

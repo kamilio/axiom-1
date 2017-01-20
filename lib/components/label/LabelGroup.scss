@@ -1,0 +1,9 @@
+@import '../../design-patterns/spacing/vars';
+@import '../../design-patterns/spacing/mixins';
+@import '../containers/mixins';
+
+// Label Group
+.ax-label__group {
+  @include space-block();
+  @include inline-component-container(ax-label);
+}

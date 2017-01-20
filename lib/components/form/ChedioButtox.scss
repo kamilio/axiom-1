@@ -1,0 +1,55 @@
+@import '../../design-patterns/animations/mixins';
+@import '../../design-patterns/spacing/mixins';
+@import '../../design-patterns/spacing/vars';
+@import '../form/vars';
+@import '../typography/vars';
+
+.ax-chedio-buttox__container {
+  @include space-block($component-margin-sm);
+
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ax-chedio-buttox__container--disabled {
+  cursor: default;
+}
+
+.ax-chedio-buttox__container--space {
+  .ax-chedio-buttox__indicator {
+    margin: 0 $component-padding-sm 0 0;
+  }
+}
+
+.ax-chedio-buttox {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+
+  + .ax-chedio-buttox__indicator {
+    @include transition((background-color, border-color, color));
+
+    position: relative;
+    width: $input-checkbox-size;
+    height: $input-checkbox-size;
+    border: $input-border-width solid $input-border-color;
+    background-color: $input-background-color;
+
+    &::before {
+      content: '';
+    }
+  }
+
+  &:disabled {
+    + .ax-chedio-buttox__indicator {
+      background-color: $input-disabled-background-color;
+    }
+  }
+
+  &:focus {
+    + .ax-chedio-buttox__indicator {
+      border-color: $input-focus-border-color;
+    }
+  }
+}

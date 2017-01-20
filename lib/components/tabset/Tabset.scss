@@ -1,0 +1,101 @@
+@import '../../design-patterns/animations/mixins';
+@import '../../design-patterns/colors/vars';
+@import '../../design-patterns/spacing/vars';
+@import '../../design-patterns/spacing/mixins';
+
+$tabset-tab-spacing: $component-padding-md;
+
+$tabset-tab-small-vertical-padding: $component-padding-md;
+$tabset-tab-large-vertical-padding: $component-padding-lg;
+
+.ax-tabset {
+  @include space-block();
+}
+
+.ax-tabset__list {
+  @include space-block();
+
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+
+  &::after {
+    flex: 1 1 auto;
+    border-bottom: 0.0625rem solid var(--color-context-border);
+    content: '';
+  }
+}
+
+.ax-tabset__list-item {
+  @include transition((border-color, background-color, color));
+
+  position: relative;
+  margin: 0 $tabset-tab-spacing 0 0;
+  border: 0.0625rem solid transparent;
+  border-radius: 0.1875rem 0.1875rem 0 0;
+  background-color: var(--color-context-background-subtle);
+  list-style: none;
+
+  &::after {
+    position: absolute;
+    right: -0.0625rem;
+    bottom: -0.0625rem;
+    width: $tabset-tab-spacing;
+    transform: translateX(100%);
+    border-bottom: 0.0625rem solid var(--color-context-border);
+    content: '';
+  }
+
+  &:not(.ax-tabset__list-item--disabled):hover {
+    color: $color-ui-primary-1;
+  }
+}
+
+.ax-tabset__list-item--active {
+  border-color: var(--color-context-border);
+  border-bottom-color: transparent;
+  background-color: var(--color-context-background);
+}
+
+.ax-tabset__list-item--disabled {
+  border-bottom-color: var(--color-context-border);
+  background-color: var(--color-context-background-disabled);
+  color: var(--color-context-text-disabled);
+}
+
+.ax-tabset__button {
+  padding-right: $component-padding-lg;
+  padding-left: $component-padding-lg;
+  color: inherit;
+}
+
+.ax-tabset__content {
+  @include space-block();
+}
+
+// Tab sizing
+.ax-tabset__list-item--small {
+  .ax-tabset__button {
+    padding-top: $tabset-tab-small-vertical-padding;
+    padding-bottom: $tabset-tab-small-vertical-padding;
+  }
+
+  &:not(.ax-tabset__list-item--active) {
+    .ax-tabset__button {
+      padding-top: $tabset-tab-small-vertical-padding - 0.0625rem;
+    }
+  }
+}
+
+.ax-tabset__list-item--large {
+  .ax-tabset__button {
+    padding-top: $tabset-tab-large-vertical-padding;
+    padding-bottom: $tabset-tab-large-vertical-padding;
+  }
+
+  &:not(.ax-tabset__list-item--active) {
+    .ax-tabset__button {
+      padding-top: $tabset-tab-large-vertical-padding - 0.0625rem;
+    }
+  }
+}

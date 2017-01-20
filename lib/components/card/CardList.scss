@@ -1,0 +1,8 @@
+@import '../../design-patterns/spacing/mixins';
+
+.ax-card-list {
+  @include space-block();
+
+  padding: 0;
+  list-style: none;
+}

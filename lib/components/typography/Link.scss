@@ -1,0 +1,26 @@
+@import '../../design-patterns/colors/vars';
+
+// Links
+a {
+  color: inherit;
+  font-style: inherit;
+  text-decoration: inherit;
+
+  &:hover {
+    color: inherit;
+    text-decoration: inherit;
+    cursor: pointer;
+  }
+}
+
+
+// sass-lint:disable no-qualifying-elements
+a.ax-link {
+  &:not(.ax-link--inherit-color) {
+    color: $color-ui-primary-1;
+
+    &:hover  { color: $color-ui-primary-2; }
+    &:active { color: $color-ui-primary-0; }
+  }
+}
+// sass-lint:enable no-qualifying-elements
