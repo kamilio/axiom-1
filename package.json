@@ -8,6 +8,7 @@
   "bugs": {
     "url": "https://github.com/BrandwatchLtd/axiom/issues"
   },
+  "files" : [ "static","lib" ],
   "repository": {
     "type": "git",
     "url": "https://github.com/BrandwatchLtd/axiom.git"
